@@ -1,0 +1,57 @@
+.status-transitions {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+}
+
+.status-transitions__title {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+.status-transitions__hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+}
+
+.status-transitions__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.status-transitions__terminal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+
+.status-transitions__terminal-text {
+  max-width: 24rem;
+}
+
+.status-transitions__updating {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+.status-transitions__error {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--status-cancelled);
+}

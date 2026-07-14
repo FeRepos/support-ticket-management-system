@@ -440,3 +440,13 @@ alwaysApply: true
 **What you did:** Diagnosed root cause: Vite was proxying to a port where a different Express app responded with HTML `Cannot GET /api/tickets` (not this project's API — our app returns JSON and serves `/health` as `{"status":"ok"}`). `server/.env` had `PORT=8081` while the proxy target was inconsistent. Updated `client/vite.config.js` to read `VITE_API_PORT` (default `3000`), added `client/.env.example`, set `PORT=3000` in `server/.env.example`, and documented two-terminal startup + `curl /health` verification in README.
 **Corrections/iteration:** User must align `PORT` in `server/.env` with `VITE_API_PORT` in `client/.env`, kill any foreign process on that port, restart both servers, and confirm `curl http://localhost:<PORT>/health` returns `{"status":"ok"}` before using the UI.
 
+## [2026-07-14 14:26] Task T5.5
+**Prompt (my own words, summarized):** Add status transition controls on ticket detail — buttons only for valid transitions from current status, styled as StatusBadge targets; flag duplicated state-machine logic as a known tradeoff.
+**What you did:** Added `client/src/utils/stateMachine.js` duplicating `VALID_TRANSITIONS` from the backend (documented tradeoff: UI copy can drift; backend PATCH remains authoritative). Built `StatusBadgeButton` and `StatusTransitionControls`, wired `updateTicketStatus` → `PATCH /api/tickets/:id/status`, integrated on detail view (view mode only) with inline status errors and terminal-state messaging for Closed/Cancelled.
+**Corrections/iteration:** none
+
+## [2026-07-14 14:44] Task T5.6
+**Prompt (my own words, summarized):** Add comments list (author, message, mono timestamp) and add-comment form on ticket detail, with empty state when there are no comments.
+**What you did:** Added `CommentsSection` component and `createComment` API helper (`POST /api/tickets/:id/comments`). Integrated on detail page below ticket content (view and edit modes); lists comments from ticket payload, shows "No comments yet" when empty, inline client/API field errors on the add form, appends new comment on success.
+**Corrections/iteration:** none
+

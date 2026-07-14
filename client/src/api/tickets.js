@@ -33,3 +33,10 @@ export function updateTicket(id, payload) {
     body: JSON.stringify(payload),
   })
 }
+
+export function updateTicketStatus(id, status) {
+  return apiFetch(`/api/tickets/${id}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status }),
+  })
+}

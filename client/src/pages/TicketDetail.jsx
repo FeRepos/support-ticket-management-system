@@ -1,11 +1,14 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ApiError, formatErrorMessage } from '../api/errors.js'
-import { fetchTicket, updateTicket } from '../api/tickets.js'
+import { createComment } from '../api/comments.js'
+import { fetchTicket, updateTicket, updateTicketStatus } from '../api/tickets.js'
 import { fetchUsers } from '../api/users.js'
+import CommentsSection from '../components/CommentsSection.jsx'
 import PriorityDot from '../components/PriorityDot.jsx'
 import PriorityPicker from '../components/PriorityPicker.jsx'
 import StatusBadge from '../components/StatusBadge.jsx'
+import StatusTransitionControls from '../components/StatusTransitionControls.jsx'
 import { formatTimestamp } from '../utils/date.js'
 import { PRIORITY_LABELS } from '../utils/priority.js'
 import './CreateTicket.css'
@@ -50,6 +53,8 @@ function TicketDetail() {
   const [form, setForm] = useState(null)
   const [fieldErrors, setFieldErrors] = useState({})
   const [saving, setSaving] = useState(false)
+  const [statusTransitioning, setStatusTransitioning] = useState(false)
+  const [statusError, setStatusError] = useState(null)
 
   const titleErrorId = `${formId}-title-error`
   const descriptionErrorId = `${formId}-description-error`
@@ -64,6 +69,7 @@ function TicketDetail() {
       setError(null)
       setEditing(false)
       setFieldErrors({})
+      setStatusError(null)
 
       try {
         const [ticketData, userData] = await Promise.all([
@@ -175,6 +181,48 @@ function TicketDetail() {
       }
     } finally {
       setSaving(false)
+    }
+  }
+
+  async function handleStatusTransition(nextStatus) {
+    setStatusTransitioning(true)
+    setStatusError(null)
+
+    try {
+      const updated = await updateTicketStatus(id, nextStatus)
+      setTicket((current) => ({ ...current, ...updated }))
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setStatusError(formatErrorMessage(err.message))
+      } else {
+        setStatusError('Could not update status. Please try again.')
+      }
+    } finally {
+      setStatusTransitioning(false)
+    }
+  }
+
+  async function handleAddComment(payload) {
+    try {
+      const newComment = await createComment(id, payload)
+      setTicket((current) => ({
+        ...current,
+        comments: [...(current.comments ?? []), newComment],
+      }))
+    } catch (err) {
+      if (err instanceof ApiError && err.field) {
+        throw {
+          field: err.field,
+          message: formatErrorMessage(err.message),
+        }
+      }
+
+      throw {
+        message:
+          err instanceof ApiError
+            ? formatErrorMessage(err.message)
+            : 'Could not add comment. Please try again.',
+      }
     }
   }
 
@@ -308,6 +356,13 @@ function TicketDetail() {
             </dl>
           </section>
 
+          <StatusTransitionControls
+            currentStatus={ticket.status}
+            onTransition={handleStatusTransition}
+            transitioning={statusTransitioning}
+            error={statusError}
+          />
+
           <section className="ticket-detail-page__section">
             <h2 className="ticket-detail-page__section-title">Description</h2>
             <p className="ticket-detail-page__description">{ticket.description}</p>
@@ -382,6 +437,13 @@ function TicketDetail() {
           </div>
         </form>
       )}
+
+      <CommentsSection
+        comments={ticket.comments ?? []}
+        users={users}
+        usersById={usersById}
+        onAddComment={handleAddComment}
+      />
     </main>
   )
 }
