@@ -1,0 +1,124 @@
+.create-ticket-page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.create-ticket-page__header {
+  margin-bottom: 1.5rem;
+}
+
+.create-ticket-page__back {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.create-ticket-page__back a {
+  color: color-mix(in srgb, var(--ink) 75%, transparent);
+  text-decoration: none;
+}
+
+.create-ticket-page__back a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.create-ticket-page__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.create-ticket-page__banner {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--status-cancelled);
+  border-radius: 0.375rem;
+  background-color: color-mix(in srgb, var(--status-cancelled) 8%, var(--bg));
+  color: var(--ink);
+}
+
+.create-ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+}
+
+.create-ticket-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.create-ticket-form__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--ink) 70%, transparent);
+}
+
+.create-ticket-form__input,
+.create-ticket-form__textarea,
+.create-ticket-form__select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.create-ticket-form__textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.create-ticket-form__input:hover,
+.create-ticket-form__textarea:hover,
+.create-ticket-form__select:hover {
+  border-color: color-mix(in srgb, var(--ink) 25%, var(--border));
+}
+
+.create-ticket-form__input--invalid {
+  border-color: var(--status-cancelled);
+}
+
+.create-ticket-form__error {
+  font-size: 0.8125rem;
+  color: var(--status-cancelled);
+}
+
+.create-ticket-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.25rem;
+}
+
+.create-ticket-form__submit {
+  padding: 0.5625rem 1.25rem;
+  border: 1px solid var(--ink);
+  border-radius: 0.375rem;
+  background-color: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.create-ticket-form__submit:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--ink) 88%, var(--surface));
+}
+
+.create-ticket-form__submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

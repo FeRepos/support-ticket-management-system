@@ -1,0 +1,33 @@
+.priority-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  box-sizing: border-box;
+}
+
+/* low: outline only */
+.priority-dot--low {
+  background-color: transparent;
+}
+
+/* medium: half-filled via inner ring */
+.priority-dot--medium {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+/* high: solid fill */
+.priority-dot--high {
+  background-color: var(--ink);
+}
+
+/* urgent: solid fill, larger, with outer ring for emphasis */
+.priority-dot--urgent {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: var(--ink);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ink);
+}

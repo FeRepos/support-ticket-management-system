@@ -1,17 +1,8 @@
 import 'dotenv/config'
-import cors from 'cors'
-import express from 'express'
+import app from './app.js'
 import connectDB from './db.js'
 
-const app = express()
 const PORT = process.env.PORT || 3000
-
-app.use(cors())
-app.use(express.json())
-
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' })
-})
 
 async function start() {
   await connectDB()
