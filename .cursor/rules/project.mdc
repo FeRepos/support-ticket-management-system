@@ -1,0 +1,51 @@
+---
+description: Support Ticket Management System project rules
+alwaysApply: true
+---
+
+# Cursor Rules — Support Ticket Management System
+
+Paste this as `.cursor/rules/project.mdc` (or `.cursorrules` if using the legacy format)
+at the root of the repo before starting implementation, so every Cursor session has it.
+
+## Always true for this project
+- Stack: React (Vite) frontend, Node/Express backend, MongoDB via Mongoose, Jest+Supertest for tests.
+- Follow `tool-specific/cursor-workflow/spec.md` as the source of truth for data model, API
+  routes, and validation rules. Don't add endpoints or fields that aren't in the spec
+  without flagging it first and asking.
+- The ticket status state machine is fixed and non-negotiable:
+  `Open->In Progress|Cancelled`, `In Progress->Resolved|Cancelled`, `Resolved->Closed`.
+  `Closed` and `Cancelled` are terminal. Never "helpfully" allow a transition not on this
+  list, even if it seems like reasonable UX.
+- All validation is enforced server-side. Client-side validation is a UX nicety, never a
+  substitute.
+- Prefer explicit, readable code over clever/compressed code — I need to be able to explain
+  every line, not just run it.
+- Never hardcode secrets or connection strings; use `.env` (gitignored) + `.env.example`.
+- When implementing a task from `tasks.md`, implement only that task's scope — don't
+  silently expand into adjacent tasks.
+
+## When generating tests
+- Integration tests for the state machine are mandatory (Core acceptance criterion #11):
+  cover every valid transition succeeding and at least the obviously-tempting invalid ones
+  (e.g. `Resolved -> In Progress`, `Closed -> Open`) being rejected with 400.
+
+## When I correct you
+If I reject or modify a suggestion, don't reapply the same pattern later in the session —
+treat the correction as standing for the rest of this file's scope, not just that one reply.
+
+## Prompt history logging (do this every task, without being asked again)
+After completing any task from tasks.md — even a partial one, even if I interrupted or
+corrected you mid-task — append an entry to `prompt-history.md` at the repo root, in this
+exact format, before you consider the task done:
+
+```
+## [YYYY-MM-DD HH:MM] Task <task id, e.g. T1.2>
+**Prompt (my own words, summarized):** <1-2 sentence summary of what I asked for>
+**What you did:** <1-3 sentence summary of the actual change — files touched, key decisions>
+**Corrections/iteration:** <anything I pushed back on or asked you to redo, or "none">
+```
+
+If `prompt-history.md` doesn't exist yet, create it with a one-line header
+(`# Prompt History — Support Ticket Management System`) before the first entry.
+Always append, never rewrite earlier entries.
