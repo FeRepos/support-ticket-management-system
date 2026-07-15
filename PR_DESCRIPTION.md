@@ -18,7 +18,7 @@ Built incrementally per `tool-specific/cursor-workflow/tasks.md` (Phases 0–6),
 - Dedicated `PATCH /api/tickets/:id/status` — only path for lifecycle changes
 - Centralized error handling: `{ error: { message, field? } }`
 - Seed script: `npm run seed` (4 users, 6 tickets all statuses, 3 comments)
-- **35 tests** (Jest + Supertest + mongodb-memory-server)
+- **71 tests** (Jest + Supertest + mongodb-memory-server)
 
 ### Frontend (`client/`)
 
@@ -47,14 +47,14 @@ Built incrementally per `tool-specific/cursor-workflow/tasks.md` (Phases 0–6),
 | 4 | Update fields / reassign | Edit mode → `PATCH /api/tickets/:id` |
 | 5 | Add comments | `CommentsSection` → `POST /api/tickets/:id/comments` |
 | 6 | Valid transitions only (backend) | `PATCH /:id/status` + `isValidTransition`; 400 on invalid |
-| 7 | Keyword search + status filter | `?q=` + `&status=` on list page |
+| 7 | Keyword search + status filter | `?q=` + `&status=` on list page; `ticketList.searchFilter.test.js` |
 | 8 | Persistence after restart | MongoDB (Atlas or local) |
-| 9 | Backend validation | `ticketValidation.js` + integration tests (T4.4) |
+| 9 | Backend validation | `ticketValidation.js` + integration/unit tests |
 | 10 | No secrets in repo | `.gitignore` audit; only `.env.example` tracked |
 | 11 | State-machine integration tests | `statusTransitions.valid/invalid.test.js` |
-| 12 | Comments regardless of status | No status gate on comment POST |
-| 13 | Fields editable when Closed/Cancelled | `PATCH /:id` does not restrict by status |
-| 14 | Case-insensitive search | Server-side regex on title + description |
+| 12 | Comments regardless of status | `ticketComments.test.js` (Closed ticket case) |
+| 13 | Fields editable when Closed/Cancelled | `ticketUpdate.validation.test.js` |
+| 14 | Case-insensitive search | `ticketList.searchFilter.test.js` |
 
 ---
 
@@ -76,7 +76,18 @@ cd server
 npm test
 ```
 
-Expected: **5 suites, 35 tests passed** (state machine unit + integration + create validation + infrastructure).
+Expected: **9 suites, 71 tests passed** (state machine, validation, search/filter, comments, field updates, infrastructure).
+
+| Suite | Covers |
+|-------|--------|
+| `stateMachine.test.js` | Pure transition logic |
+| `ticketValidation.test.js` | Validation helper unit tests |
+| `statusTransitions.*.test.js` | Valid/invalid HTTP status transitions |
+| `ticketCreate.validation.test.js` | Create-ticket validation |
+| `ticketList.searchFilter.test.js` | Keyword search, status filter, regex escape |
+| `ticketComments.test.js` | Comment create/list/detail; Closed ticket |
+| `ticketUpdate.validation.test.js` | Field updates; reject status on PATCH |
+| `infrastructure.test.js` | DB + `/health` smoke |
 
 ### Manual — prerequisites
 
@@ -115,7 +126,7 @@ See [README.md](./README.md) for prerequisites, env vars, ports, and troubleshoo
 
 ## Out of scope (Stretch — not in this PR)
 
-Auth, user CRUD UI, priority/assignee server-side filters, pagination, Swagger, Docker/CI, unit tests beyond state machine sanity.
+Auth, user CRUD UI, priority/assignee server-side filters, pagination, Swagger, Docker/CI, frontend component tests.
 
 ---
 
@@ -125,6 +136,6 @@ Auth, user CRUD UI, priority/assignee server-side filters, pagination, Swagger, 
 |------|------|
 | State machine | `server/utils/stateMachine.js` |
 | Status route | `server/routes/tickets.js` (`PATCH /:id/status`) |
-| Integration tests | `server/test/statusTransitions.*.test.js` |
+| Integration tests | `server/test/statusTransitions.*.test.js`, `ticketList.searchFilter.test.js`, `ticketComments.test.js`, `ticketUpdate.validation.test.js` |
 | UI transitions | `client/src/components/StatusTransitionControls.jsx` |
 | Spec reference | `tool-specific/cursor-workflow/spec.md` |

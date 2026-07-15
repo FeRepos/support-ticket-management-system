@@ -153,3 +153,8 @@ Structured log per `.cursor/rules/project.mdc`. One entry per `tasks.md` task (a
 **Prompt (my own words, summarized):** Export/save full Cursor prompt history into the repo with an index and coverage map.
 **What you did:** Added prompt-history/ folder with README.md (index), task-log.md (structured T1.1–T6.5 log), export-phase6-completion.md (T6.3–T6.5 transcripts); renamed prompt-history-server-detialed.md → prompt-history-server-detailed.md; updated prompt-history.md header to point at the index.
 **Corrections/iteration:** none
+
+## [2026-07-15 12:38] Task T6.6
+**Prompt (my own words, summarized):** Add integration tests for search/filter, comments, and field updates; add validation unit tests; update docs with new coverage.
+**What you did:** Added ticketList.searchFilter.test.js, ticketComments.test.js, ticketUpdate.validation.test.js, ticketValidation.test.js; extended test helpers; updated README, PR_DESCRIPTION, tool-workflow, reflection. 71 tests passing.
+**Corrections/iteration:** Split regex search test into wildcard vs literal-match cases.

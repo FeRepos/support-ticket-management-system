@@ -118,6 +118,24 @@ cd server
 npm test
 ```
 
+Coverage includes:
+
+- State machine unit + integration tests (valid and invalid transitions)
+- Create-ticket validation
+- Search/filter (`?q=`, `&status=`) including regex-escape edge cases
+- Comments API (including on Closed tickets)
+- Field update validation (including edits on Closed tickets)
+- Validation helpers (`ticketValidation.js`)
+
+## Submission artifacts
+
+| Document | Purpose |
+|----------|---------|
+| [`tool-workflow.md`](./tool-workflow.md) | Cursor AI workflow reflection (Part A, 11 questions) |
+| [`reflection.md`](./reflection.md) | Technical decisions, tradeoffs, and learnings |
+| [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary, acceptance-criteria mapping, test plan |
+| [`prompt-history/`](./prompt-history/) | Prompt history index and task log |
+
 ## Troubleshooting
 
 **`MongoDB connection failed` / SSL errors (Atlas)**  

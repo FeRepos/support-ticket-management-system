@@ -30,7 +30,7 @@ Full Cursor (Agent mode) conversation exports for the Support Ticket Management 
 | 3 | T3.1–T3.8 | server export + `task-log.md` |
 | 4 | T4.1–T4.4 | server export + `task-log.md` |
 | 5 | T5.1–T5.6 | `prompt-history-client-detailed.md` + `task-log.md` |
-| 6 | T6.1–T6.5 | server export (T6.1–T6.2) + `export-phase6-completion.md` (T6.3–T6.5) |
+| 6 | T6.1–T6.6 | server export (T6.1–T6.2) + `export-phase6-completion.md` (T6.3–T6.5) + `task-log.md` (T6.6) |
 
 ---
 

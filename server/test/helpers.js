@@ -59,6 +59,19 @@ export async function patchTicketStatus(ticketId, status) {
     .send({ status })
 }
 
+export async function patchTicket(ticketId, body) {
+  return request(app).patch(`/api/tickets/${ticketId}`).send(body)
+}
+
+export async function createCommentViaApi(ticketId, userId, message = 'Test comment') {
+  return request(app)
+    .post(`/api/tickets/${ticketId}/comments`)
+    .send({
+      message,
+      createdBy: userId.toString(),
+    })
+}
+
 export async function getTicketFromDb(ticketId) {
   return Ticket.findById(ticketId)
 }

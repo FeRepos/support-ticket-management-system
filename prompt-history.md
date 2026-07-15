@@ -478,3 +478,8 @@ alwaysApply: true
 **What you did:** Added prompt-history/ folder with README.md (index), task-log.md (structured T1.1–T6.5 log), export-phase6-completion.md (T6.3–T6.5 transcripts); renamed prompt-history-server-detialed.md → prompt-history-server-detailed.md; updated prompt-history.md header to point at the index.
 **Corrections/iteration:** none
 
+## [2026-07-15 12:38] Task T6.6
+**Prompt (my own words, summarized):** Add integration tests for search/filter, comments, and field updates; add validation unit tests; update README, PR_DESCRIPTION, tool-workflow, and reflection with new coverage.
+**What you did:** Added server/test/ticketList.searchFilter.test.js (10 cases), ticketComments.test.js (8), ticketUpdate.validation.test.js (8), and server/utils/ticketValidation.test.js (10 unit cases). Extended test/helpers.js with patchTicket and createCommentViaApi. Updated README (test coverage + submission artifacts section), PR_DESCRIPTION.md, tool-workflow.md §8, and reflection.md. Full suite: 9 suites, 71 tests passed.
+**Corrections/iteration:** Adjusted regex search test — `.*` alone correctly matches titles containing literal `.*`; split into wildcard vs literal-match cases.
+

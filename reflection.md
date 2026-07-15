@@ -75,8 +75,10 @@ Stretch items in `tasks.md` (auth, pagination, Swagger, CI) are correctly deferr
 2. A single source for `VALID_TRANSITIONS` shared by client and server (or generate from spec).
 3. E2E smoke test (Playwright) for create → transition → comment on a running stack.
 
+After the initial submission review, I also added integration tests beyond the mandatory state-machine tier: search/filter (`ticketList.searchFilter.test.js`), comments (`ticketComments.test.js`), field updates (`ticketUpdate.validation.test.js`), and validation unit tests (`ticketValidation.test.js`). That brought coverage in line with acceptance criteria #7, #12–#14, not just #6 and #11.
+
 ---
 
 ## Bottom line
 
-The system meets the Core acceptance criteria: persistent tickets, search/filter, full UI flows, backend validation, no secrets in git, and **35 passing backend tests** including state-machine integration coverage. The architecture is boring in a good way — explicit routes, one enforcement point for status, readable validation — which is what I wanted for something I have to defend in review.
+The system meets the Core acceptance criteria: persistent tickets, search/filter, full UI flows, backend validation, no secrets in git, and **71 passing backend tests** across state machine, validation, search/filter, comments, and field updates. The architecture is boring in a good way — explicit routes, one enforcement point for status, readable validation — which is what I wanted for something I have to defend in review.

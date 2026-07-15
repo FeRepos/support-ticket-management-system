@@ -94,13 +94,13 @@ Deliberately **in three layers**, with a single backend source of truth:
 
 | Layer | How |
 |-------|-----|
-| **Unit** | `server/utils/stateMachine.test.js` — all valid/invalid/same-status/unknown status cases |
-| **Integration** | Supertest + `mongodb-memory-server` — real routes, isolated DB, `afterEach` collection clear |
+| **Unit** | `server/utils/stateMachine.test.js` — all valid/invalid/same-status/unknown status cases; `server/utils/ticketValidation.test.js` — create/update/comment validation helpers |
+| **Integration** | Supertest + `mongodb-memory-server` — real routes, isolated DB, `afterEach` collection clear; state machine, create validation, search/filter, comments, field updates |
 | **Manual API** | `curl /health`, `curl /api/tickets`, seed + dev servers |
 | **Manual UI** | Two terminals: `server` `npm run dev` + `client` `npm run dev`; exercise list, create, detail, status buttons, comments |
 | **Secrets** | T6.2 grep + `git check-ignore` — no `.env` or credentials in tracked files |
 
-Final backend test run at end of Phase 4: **35 tests passed**.
+Final backend test run: **71 tests passed** (9 suites) — state machine, validation, search/filter, comments, field updates, infrastructure.
 
 ### 9. How did you manage dependencies?
 
