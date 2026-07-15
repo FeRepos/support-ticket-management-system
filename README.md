@@ -2,6 +2,19 @@
 
 Internal support ticket app: React (Vite) frontend, Express + MongoDB backend.
 
+## Submission package (Code Pulse)
+
+| Document | Purpose |
+|----------|---------|
+| **AI tool** | Cursor (Agent mode) |
+| [`requirements.md`](./requirements.md) | Requirement breakdown, edge cases, test traceability |
+| [`tool-workflow.md`](./tool-workflow.md) | AI workflow reflection (Part A, 11 questions) |
+| [`prompt-history.md`](./prompt-history.md) | Prompt and task log (T0–T6) |
+| [`reflection.md`](./reflection.md) | Design decisions, tradeoffs, and learnings |
+| [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary, acceptance mapping, test plan |
+
+**Tests:** `cd server && npm test` — 71 tests (9 suites)
+
 ## Prerequisites
 
 - **Node.js** 18+ and **npm**
@@ -126,15 +139,6 @@ Coverage includes:
 - Comments API (including on Closed tickets)
 - Field update validation (including edits on Closed tickets)
 - Validation helpers (`ticketValidation.js`)
-
-## Submission artifacts
-
-| Document | Purpose |
-|----------|---------|
-| [`tool-workflow.md`](./tool-workflow.md) | Cursor AI workflow reflection (Part A, 11 questions) |
-| [`reflection.md`](./reflection.md) | Technical decisions, tradeoffs, and learnings |
-| [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary, acceptance-criteria mapping, test plan |
-| [`prompt-history/`](./prompt-history/) | Prompt history index and task log |
 
 ## Troubleshooting
 

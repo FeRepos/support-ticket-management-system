@@ -2,7 +2,7 @@
 
 **Tool:** Cursor (Agent mode)  
 **Project:** Full-stack support ticket app (React/Vite + Express/MongoDB)  
-**Written from:** `prompt-history.md`, `prompt-history-server-detailed.md`, `prompt-history-client-detailed.md`, and the actual codebase — not a hypothetical plan.
+**Written from:** `prompt-history.md` and the actual codebase — not a hypothetical plan.
 
 ---
 
@@ -141,7 +141,7 @@ No surprise packages in `package.json` beyond those paths.
 - Run `npm install` in both `client/` and `server/` immediately after scaffold tasks, and add a one-line “first-time setup” script or README step so missing `react-router-dom` doesn’t surprise dev server startup.
 - Set `PORT=3000` and `VITE_API_PORT=3000` in `.env.example` from day one (done eventually after proxy incident).
 - Consider a **shared** `VALID_TRANSITIONS` package or generated constant for client+server if duplication becomes maintenance pain — for this exercise, documented duplication was the pragmatic choice.
-- Export Cursor transcripts to `prompt-history-*.md` earlier (T6.5) so reflection doesn’t rely on memory.
+- Export Cursor transcripts into `prompt-history.md` earlier so reflection doesn’t rely on memory.
 
 ---
 
@@ -150,6 +150,7 @@ No surprise packages in `package.json` beyond those paths.
 | Area | Location |
 |------|----------|
 | Spec & tasks | `tool-specific/cursor-workflow/` |
+| Requirements | `requirements.md` |
 | Cursor rules | `.cursor/rules/project.mdc` |
 | Session log | `prompt-history.md` |
 | State machine (backend) | `server/utils/stateMachine.js` |

@@ -30,8 +30,10 @@ Built incrementally per `tool-specific/cursor-workflow/tasks.md` (Phases 0–6),
 
 ### Docs & hygiene
 
-- Root `README.md` — full-stack setup, ports, troubleshooting
+- Root `README.md` — full-stack setup, ports, troubleshooting, submission package links
+- `requirements.md` — requirement breakdown and edge cases
 - `tool-workflow.md` — Cursor workflow reflection (Part A)
+- `prompt-history.md` — AI prompt and task log
 - `reflection.md` — technical reflection
 - `.env.example` in `server/` and `client/`; `.env` gitignored; secrets audit (T6.2)
 
@@ -138,4 +140,4 @@ Auth, user CRUD UI, priority/assignee server-side filters, pagination, Swagger, 
 | Status route | `server/routes/tickets.js` (`PATCH /:id/status`) |
 | Integration tests | `server/test/statusTransitions.*.test.js`, `ticketList.searchFilter.test.js`, `ticketComments.test.js`, `ticketUpdate.validation.test.js` |
 | UI transitions | `client/src/components/StatusTransitionControls.jsx` |
-| Spec reference | `tool-specific/cursor-workflow/spec.md` |
+| Spec reference | `requirements.md`, `tool-specific/cursor-workflow/spec.md` |
