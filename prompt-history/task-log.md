@@ -1,18 +1,8 @@
-# Prompt History — Support Ticket Management System
+# Task Log — Support Ticket Management System
 
-> **Index:** [`prompt-history/README.md`](./prompt-history/README.md) — per-phase transcripts (`phase-0` … `phase-6`) + [`task-log.md`](./prompt-history/task-log.md).  
-> Combined exports archived under [`prompt-history/archive/`](./prompt-history/archive/).
-
-**AI tool:** Cursor (Agent mode)
-
-Structured log per `.cursor/rules/project.mdc` — one entry per `tasks.md` task and notable debugging sessions. See also [`tool-workflow.md`](./tool-workflow.md) and [`requirements.md`](./requirements.md).
+Structured log per `.cursor/rules/project.mdc`. One entry per `tasks.md` task (and notable ad-hoc debugging sessions).
 
 ---
-
-## [2026-07-13 15:01] Task T0.1–T0.4
-**Prompt (my own words, summarized):** Scaffold repo (client Vite+React, server Express), wire `/health`, MongoDB connection, and routing shell — one task at a time with review stops.
-**What you did:** Created `client/` and `server/` structure, `package.json` files, health route, `db.js`, `.env.example`, placeholder `TicketList`/`TicketDetail` routes via react-router-dom.
-**Corrections/iteration:** `npm create vite` blocked in agent sandbox — scaffold created manually; user ran `npm install` locally.
 
 ## [2026-07-13 15:30] Task T1.1
 **Prompt (my own words, summarized):** Create a Mongoose User schema in server/models/User.js with name, email (unique), and role enum (agent|admin), matching spec.md §2 exactly.
@@ -159,22 +149,27 @@ Structured log per `.cursor/rules/project.mdc` — one entry per `tasks.md` task
 **What you did:** Added reflection.md (technical decisions, tradeoffs, friction points, AI workflow learnings) and PR_DESCRIPTION.md (summary, acceptance-criteria table, test plan, reviewer setup, key files). Both grounded in shipped Core scope and prompt-history.
 **Corrections/iteration:** none
 
+## [2026-07-15 12:28] Task T6.5
+**Prompt (my own words, summarized):** Export/save full Cursor prompt history into the repo with an index and coverage map.
+**What you did:** Added prompt-history/ folder with README.md (index), task-log.md (structured T1.1–T6.5 log), export-phase6-completion.md (T6.3–T6.5 transcripts); renamed prompt-history-server-detialed.md → prompt-history-server-detailed.md; updated prompt-history.md header to point at the index.
+**Corrections/iteration:** none
+
 ## [2026-07-15 12:38] Task T6.6
 **Prompt (my own words, summarized):** Add integration tests for search/filter, comments, and field updates; add validation unit tests; update docs with new coverage.
-**What you did:** Added server/test/ticketList.searchFilter.test.js, ticketComments.test.js, ticketUpdate.validation.test.js, ticketValidation.test.js; extended test helpers; updated README, PR_DESCRIPTION, tool-workflow, reflection. 71 tests passing.
-**Corrections/iteration:** Adjusted regex search test — split wildcard vs literal-match cases.
+**What you did:** Added ticketList.searchFilter.test.js, ticketComments.test.js, ticketUpdate.validation.test.js, ticketValidation.test.js; extended test helpers; updated README, PR_DESCRIPTION, tool-workflow, reflection. 71 tests passing.
+**Corrections/iteration:** Split regex search test into wildcard vs literal-match cases.
 
 ## [2026-07-15 13:52] Task T6.7
 **Prompt (my own words, summarized):** Add requirements.md for Code Pulse scanner; consolidate prompt history to single prompt-history.md; remove redundant prompt export files.
-**What you did:** Added root requirements.md (requirement breakdown, edge cases, test traceability). Trimmed prompt-history.md to structured task log only. Removed prompt-history/ folder, prompt-history-client-detailed.md, and prompt-history-server-detailed.md. Updated README submission block and cross-references in tool-workflow.md and PR_DESCRIPTION.md.
+**What you did:** Added root requirements.md; trimmed prompt-history.md; removed prompt-history/ folder and detailed export files temporarily.
 **Corrections/iteration:** none
 
 ## [2026-07-15 13:59] Task T6.8
 **Prompt (my own words, summarized):** Restore prompt-history/ folder and detailed export files as created in T6.5.
-**What you did:** Restored prompt-history/README.md, task-log.md, export-phase6-completion.md, prompt-history-client-detailed.md, and prompt-history-server-detailed.md from git history. Updated prompt-history.md header to point at the index again; updated README and cross-references.
-**Corrections/iteration:** User preferred folder structure from earlier submission layout.
+**What you did:** Restored prompt-history/README.md, task-log.md, export-phase6-completion.md, prompt-history-client-detailed.md, and prompt-history-server-detailed.md; updated cross-references.
+**Corrections/iteration:** User preferred earlier folder layout.
 
 ## [2026-07-15 14:05] Task T6.9 (prompt-history organization)
 **Prompt (my own words, summarized):** Based on chat history, add all phase prompts into prompt-history/ folder.
-**What you did:** Split server/client detailed exports into per-phase transcript files under prompt-history/ (phase-0 through phase-6, ops-debugging-sessions); renamed export-phase6-completion.md to phase-6-polish-part2.md; added phase-6-extensions.md; archived originals in prompt-history/archive/; updated README and root stub pointers.
+**What you did:** Split server/client detailed exports into per-phase files (phase-0 through phase-6, ops-debugging-sessions); renamed export-phase6-completion.md → phase-6-polish-part2.md; added phase-6-extensions.md (T6.6–T6.8); moved originals to prompt-history/archive/; updated README and root stub pointers.
 **Corrections/iteration:** none

@@ -131,5 +131,6 @@ Run: `cd server && npm test` (71 tests)
 |------|---------|
 | [`tool-workflow.md`](./tool-workflow.md) | AI workflow reflection (Part A) |
 | [`prompt-history.md`](./prompt-history.md) | Prompt and task log |
+| [`prompt-history/`](./prompt-history/) | Prompt history index and full exports |
 | [`reflection.md`](./reflection.md) | Design decisions and tradeoffs |
 | [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary and test plan |

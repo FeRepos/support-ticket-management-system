@@ -34,6 +34,7 @@ Built incrementally per `tool-specific/cursor-workflow/tasks.md` (Phases 0–6),
 - `requirements.md` — requirement breakdown and edge cases
 - `tool-workflow.md` — Cursor workflow reflection (Part A)
 - `prompt-history.md` — AI prompt and task log
+- `prompt-history/` — prompt history index and full exports
 - `reflection.md` — technical reflection
 - `.env.example` in `server/` and `client/`; `.env` gitignored; secrets audit (T6.2)
 

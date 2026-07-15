@@ -2,7 +2,7 @@
 
 **Tool:** Cursor (Agent mode)  
 **Project:** Full-stack support ticket app (React/Vite + Express/MongoDB)  
-**Written from:** `prompt-history.md` and the actual codebase — not a hypothetical plan.
+**Written from:** `prompt-history.md`, `prompt-history-server-detailed.md`, `prompt-history-client-detailed.md`, and the actual codebase — not a hypothetical plan.
 
 ---
 
