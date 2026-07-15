@@ -18,7 +18,7 @@ Full Cursor (Agent mode) conversation exports for the Support Ticket Management 
 | 5 — Frontend | T5.1–T5.6 | [`phase-5-frontend.md`](./phase-5-frontend.md) |
 | 6 — Polish | T6.1–T6.2 | [`phase-6-polish-part1.md`](./phase-6-polish-part1.md) |
 | 6 — Polish | T6.3–T6.5 | [`phase-6-polish-part2.md`](./phase-6-polish-part2.md) |
-| 6 — Extensions | T6.6–T6.8 | [`phase-6-extensions.md`](./phase-6-extensions.md) |
+| 6 — Extensions | T6.6–T6.10 | [`phase-6-extensions.md`](./phase-6-extensions.md) |
 
 **Ad-hoc debugging** (between Phase 4 and Phase 6): [`ops-debugging-sessions.md`](./ops-debugging-sessions.md)
 
@@ -41,10 +41,13 @@ Full Cursor (Agent mode) conversation exports for the Support Ticket Management 
 
 ## Related submission artifacts
 
-- [`../requirements.md`](../requirements.md) — Requirement breakdown and edge cases
-- [`../tool-workflow.md`](../tool-workflow.md) — Part A workflow reflection (11 questions)
-- [`../reflection.md`](../reflection.md) — Technical reflection
-- [`../PR_DESCRIPTION.md`](../PR_DESCRIPTION.md) — PR body for review
+- [`../requirements.md`](../requirements.md) — Requirement breakdown (root mirror)
+- [`../tool-specific/cursor-workflow/requirements.md`](../tool-specific/cursor-workflow/requirements.md) — Canonical requirements
+- [`../tool-specific/cursor-workflow/tool-workflow.md`](../tool-specific/cursor-workflow/tool-workflow.md) — Part A workflow reflection
+- [`../tool-specific/cursor-workflow/session-journey.md`](../tool-specific/cursor-workflow/session-journey.md) — Session journey
+- [`../tool-specific/cursor-workflow/reflection.md`](../tool-specific/cursor-workflow/reflection.md) — Technical reflection
+- [`../.cursor/templates/prompt-history.md`](../.cursor/templates/prompt-history.md) — Prompt history index
+- [`../tool-specific/cursor-workflow/PR_DESCRIPTION.md`](../tool-specific/cursor-workflow/PR_DESCRIPTION.md) — PR body
 
 ---
 

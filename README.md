@@ -2,19 +2,35 @@
 
 Internal support ticket app: React (Vite) frontend, Express + MongoDB backend.
 
-## Submission package (Code Pulse)
+**AI tool:** Cursor (Agent mode)
 
-| Document | Purpose |
-|----------|---------|
-| **AI tool** | Cursor (Agent mode) |
-| [`requirements.md`](./requirements.md) | Requirement breakdown, edge cases, test traceability |
-| [`tool-workflow.md`](./tool-workflow.md) | AI workflow reflection (Part A, 11 questions) |
-| [`prompt-history.md`](./prompt-history.md) | Prompt and task log (T0–T6) |
-| [`prompt-history/`](./prompt-history/) | Prompt history index and exports |
-| [`reflection.md`](./reflection.md) | Design decisions, tradeoffs, and learnings |
-| [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary, acceptance mapping, test plan |
+## Exercise submission
+
+See **[`.cursor/checklists/submission.md`](./.cursor/checklists/submission.md)** for the full checklist.
+
+| Document | Canonical path |
+|----------|----------------|
+| Requirements + edge cases | [`tool-specific/cursor-workflow/requirements.md`](./tool-specific/cursor-workflow/requirements.md) |
+| AI workflow (Part A) | [`tool-specific/cursor-workflow/tool-workflow.md`](./tool-specific/cursor-workflow/tool-workflow.md) |
+| Reflection | [`tool-specific/cursor-workflow/reflection.md`](./tool-specific/cursor-workflow/reflection.md) |
+| Session journey | [`tool-specific/cursor-workflow/session-journey.md`](./tool-specific/cursor-workflow/session-journey.md) |
+| Prompt history index | [`.cursor/templates/prompt-history.md`](./.cursor/templates/prompt-history.md) |
+| Per-phase transcripts | [`prompt-history/`](./prompt-history/) |
+| Task log (root) | [`prompt-history.md`](./prompt-history.md) |
+| PR description | [`tool-specific/cursor-workflow/PR_DESCRIPTION.md`](./tool-specific/cursor-workflow/PR_DESCRIPTION.md) |
 
 **Tests:** `cd server && npm test` — 71 tests (9 suites)
+
+## Cursor workflow
+
+Start every AI session with:
+
+```
+@.cursor/context/project-overview.md
+@tool-specific/cursor-workflow/spec.md
+```
+
+Reusable prompts: [`.cursor/prompts/`](./.cursor/prompts/) · Rules: [`.cursor/rules/project.mdc`](./.cursor/rules/project.mdc)
 
 ## Prerequisites
 
@@ -159,9 +175,11 @@ Coverage includes:
 ## Project layout
 
 ```
-client/          React + Vite UI
-server/          Express API, Mongoose models, seed script, tests
-tool-specific/   Spec, tasks, and workflow docs (not runtime)
+client/                          React + Vite UI
+server/                          Express API, Mongoose, tests
+tool-specific/cursor-workflow/   Spec, tasks, submission artifacts
+prompt-history/                  Per-phase Cursor transcripts
+.cursor/                         Rules, prompts, checklists, context
 ```
 
 ## API overview

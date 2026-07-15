@@ -1,6 +1,8 @@
 # Requirements — Support Ticket Management System (Core)
 
-Submission-facing requirement analysis for the Core scope. Detailed spec: [`tool-specific/cursor-workflow/spec.md`](./tool-specific/cursor-workflow/spec.md). Acceptance criteria: [`tool-specific/cursor-workflow/acceptance-criteria.md`](./tool-specific/cursor-workflow/acceptance-criteria.md).
+Submission-facing requirement analysis for the Core scope. Detailed spec: [`spec.md`](./spec.md). Acceptance criteria: [`acceptance-criteria.md`](./acceptance-criteria.md).
+
+**Canonical copy** — also mirrored at repo root [`requirements.md`](../../requirements.md) for reviewers.
 
 **AI tool:** Cursor (Agent mode)
 
@@ -129,10 +131,10 @@ Run: `cd server && npm test` (71 tests)
 
 | File | Purpose |
 |------|---------|
-| [`tool-specific/cursor-workflow/tool-workflow.md`](./tool-specific/cursor-workflow/tool-workflow.md) | AI workflow reflection (Part A) |
-| [`tool-specific/cursor-workflow/reflection.md`](./tool-specific/cursor-workflow/reflection.md) | Design decisions and tradeoffs |
-| [`tool-specific/cursor-workflow/session-journey.md`](./tool-specific/cursor-workflow/session-journey.md) | Chronological build narrative |
-| [`.cursor/templates/prompt-history.md`](./.cursor/templates/prompt-history.md) | Prompt history index |
-| [`prompt-history/`](./prompt-history/) | Per-phase transcripts |
-| [`prompt-history.md`](./prompt-history.md) | Root task log |
-| [`tool-specific/cursor-workflow/PR_DESCRIPTION.md`](./tool-specific/cursor-workflow/PR_DESCRIPTION.md) | PR summary and test plan |
+| [`tool-workflow.md`](./tool-workflow.md) | AI workflow reflection (Part A) |
+| [`reflection.md`](./reflection.md) | Design decisions and tradeoffs |
+| [`session-journey.md`](./session-journey.md) | Chronological build narrative |
+| [`PR_DESCRIPTION.md`](./PR_DESCRIPTION.md) | PR summary and test plan |
+| [`.cursor/templates/prompt-history.md`](../../.cursor/templates/prompt-history.md) | Prompt history index |
+| [`prompt-history/`](../../prompt-history/) | Per-phase transcripts |
+| [`prompt-history.md`](../../prompt-history.md) | Root task log |

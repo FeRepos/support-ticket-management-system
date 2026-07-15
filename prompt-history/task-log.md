@@ -173,3 +173,8 @@ Structured log per `.cursor/rules/project.mdc`. One entry per `tasks.md` task (a
 **Prompt (my own words, summarized):** Based on chat history, add all phase prompts into prompt-history/ folder.
 **What you did:** Split server/client detailed exports into per-phase files (phase-0 through phase-6, ops-debugging-sessions); renamed export-phase6-completion.md → phase-6-polish-part2.md; added phase-6-extensions.md (T6.6–T6.8); moved originals to prompt-history/archive/; updated README and root stub pointers.
 **Corrections/iteration:** none
+
+## [2026-07-15 15:30] Task T6.10
+**Prompt (my own words, summarized):** Create branch and reorganize submission artifacts to match reference exercise layout.
+**What you did:** Branch cursor/reorganize-submission-artifacts; canonical artifacts in tool-specific/cursor-workflow/; added .cursor/context, checklists, templates, prompts; updated README.
+**Corrections/iteration:** none

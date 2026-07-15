@@ -5,7 +5,7 @@
 
 **AI tool:** Cursor (Agent mode)
 
-Structured log per `.cursor/rules/project.mdc` — one entry per `tasks.md` task and notable debugging sessions. See also [`tool-workflow.md`](./tool-workflow.md) and [`requirements.md`](./requirements.md).
+Structured log per `.cursor/rules/project.mdc`. See also [`.cursor/templates/prompt-history.md`](./.cursor/templates/prompt-history.md), [`tool-specific/cursor-workflow/session-journey.md`](./tool-specific/cursor-workflow/session-journey.md), [`tool-specific/cursor-workflow/tool-workflow.md`](./tool-specific/cursor-workflow/tool-workflow.md), and [`requirements.md`](./requirements.md).
 
 ---
 
@@ -177,4 +177,9 @@ Structured log per `.cursor/rules/project.mdc` — one entry per `tasks.md` task
 ## [2026-07-15 14:05] Task T6.9 (prompt-history organization)
 **Prompt (my own words, summarized):** Based on chat history, add all phase prompts into prompt-history/ folder.
 **What you did:** Split server/client detailed exports into per-phase transcript files under prompt-history/ (phase-0 through phase-6, ops-debugging-sessions); renamed export-phase6-completion.md to phase-6-polish-part2.md; added phase-6-extensions.md; archived originals in prompt-history/archive/; updated README and root stub pointers.
+**Corrections/iteration:** none
+
+## [2026-07-15 15:30] Task T6.10
+**Prompt (my own words, summarized):** Create branch and reorganize submission artifacts to match reference exercise layout (tool-specific/cursor-workflow + .cursor/).
+**What you did:** Branch `cursor/reorganize-submission-artifacts`. Canonical copies in `tool-specific/cursor-workflow/` (tool-workflow, reflection, requirements, PR_DESCRIPTION, session-journey). Added `.cursor/context/`, `.cursor/checklists/`, `.cursor/templates/prompt-history.md`, `.cursor/prompts/`. Root tool-workflow/reflection/PR_DESCRIPTION are pointers; requirements.md and prompt-history.md remain at root. Updated README and cross-references.
 **Corrections/iteration:** none
