@@ -450,3 +450,13 @@ alwaysApply: true
 **What you did:** Added `CommentsSection` component and `createComment` API helper (`POST /api/tickets/:id/comments`). Integrated on detail page below ticket content (view and edit modes); lists comments from ticket payload, shows "No comments yet" when empty, inline client/API field errors on the add form, appends new comment on success.
 **Corrections/iteration:** none
 
+## [2026-07-15 11:20] Task T6.1
+**Prompt (my own words, summarized):** Write setup README covering prerequisites, env vars, seed, dev servers, tests, and ports so a newcomer can run the full app.
+**What you did:** Replaced root README.md with a single full-stack guide (prerequisites, server/client .env setup referencing .env.example, seed, npm run dev for both apps, npm test, port table, troubleshooting, API overview). Chose one root README over split client/server docs so port/proxy coordination and startup order stay in one place.
+**Corrections/iteration:** none
+
+## [2026-07-15 11:22] Task T6.2
+**Prompt (my own words, summarized):** Audit repo for committed secrets — confirm .gitignore covers .env and node_modules; grep for hardcoded credentials; fix leaks or flag uncertainties.
+**What you did:** Audited git tracking and grepped the codebase: server/.env and client/.env are gitignored and never committed; only .env.example files are tracked; no hardcoded Atlas URIs, API keys, or passwords in source. Added explicit `.env` entries to client/.gitignore for defense-in-depth (root .gitignore already covered them).
+**Corrections/iteration:** Flagged to user: rotate Atlas DB password if it was ever shared outside .env (e.g. in chat); local server/.env exists on disk only — verify `git status` before push.
+

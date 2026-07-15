@@ -109,14 +109,15 @@
 }
 
 .ticket-table-toolbar__fetching {
-  align-self: center;
+  align-self: flex-end;
+  padding-bottom: 0.4375rem;
   font-size: 0.8125rem;
   color: color-mix(in srgb, var(--ink) 55%, transparent);
 }
 
 .ticket-table-toolbar__clear,
 .ticket-table__empty-clear {
-  align-self: center;
+  align-self: flex-end;
   padding: 0.4375rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 0.375rem;

@@ -1,55 +1,156 @@
 # Support Ticket Management System
 
-Setup instructions coming soon
+Internal support ticket app: React (Vite) frontend, Express + MongoDB backend.
 
-## Local development
+## Prerequisites
 
-Run **both** the API and the Vite dev server. The frontend proxies `/api/*` to the backend port configured in `client/.env` (`VITE_API_PORT`, default `3000`). That value **must match** `PORT` in `server/.env`.
+- **Node.js** 18+ and **npm**
+- **MongoDB** — either:
+  - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (free tier), or
+  - MongoDB installed locally (e.g. macOS: `brew install mongodb-community` then `brew services start mongodb-community`)
+
+## Quick start
+
+### 1. Install dependencies
 
 ```bash
-# Terminal 1 — API
-cd server
-cp .env.example .env   # set MONGO_URI and PORT
-npm run seed           # first time only
-npm start
+cd server && npm install
+cd ../client && npm install
+```
 
-# Terminal 2 — frontend
+### 2. Configure environment
+
+**Backend** — copy the example file and fill in values (never commit `.env`):
+
+```bash
+cd server
+cp .env.example .env
+```
+
+Edit `server/.env`:
+
+| Variable | Description |
+|----------|-------------|
+| `MONGO_URI` | MongoDB connection string (see examples below) |
+| `PORT` | API port (default `3000`) |
+
+**Frontend** — only needed if your API port is **not** `3000`:
+
+```bash
 cd client
-cp .env.example .env   # only if server PORT is not 3000
+cp .env.example .env
+```
+
+Set `VITE_API_PORT` in `client/.env` to the **same value** as `PORT` in `server/.env`. The Vite dev server proxies `/api/*` to `http://localhost:<VITE_API_PORT>`.
+
+#### `MONGO_URI` examples (placeholders only — use your own values)
+
+**Local MongoDB:**
+
+```
+MONGO_URI=mongodb://localhost:27017/support-tickets
+PORT=3000
+```
+
+**MongoDB Atlas** (from Atlas → Connect → Drivers; replace `<password>` and database name):
+
+```
+MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/support-tickets?retryWrites=true&w=majority
+PORT=3000
+```
+
+Atlas checklist: cluster running, database user created, your IP on the **Network Access** allowlist.
+
+### 3. Seed the database (first time, or to reset sample data)
+
+```bash
+cd server
+npm run seed
+```
+
+Expected output: `Seed completed: 4 users, 6 tickets, 3 comments`
+
+### 4. Start the backend
+
+```bash
+cd server
 npm run dev
 ```
 
-Verify the API is the correct process:
+Uses **nodemon** (restarts on file changes). For a one-off run without nodemon: `npm start`.
+
+Verify the API:
 
 ```bash
 curl http://localhost:3000/health
 # → {"status":"ok"}
-
-curl http://localhost:3000/api/tickets
-# → JSON array of tickets
 ```
 
-If you get HTML `Cannot GET /api/tickets`, something else is bound to that port — stop it and restart `npm start` in `server/`.
+(Use your `PORT` if not `3000`.)
 
-## MongoDB
+### 5. Start the frontend
 
-The server requires a `MONGO_URI` environment variable (see `server/.env.example`).
+In a **second terminal**:
 
-### Option A — Local MongoDB
+```bash
+cd client
+npm run dev
+```
 
-1. Install and start MongoDB locally (e.g. via [Homebrew](https://brew.sh) on macOS: `brew install mongodb-community` then `brew services start mongodb-community`).
-2. Copy `server/.env.example` to `server/.env`.
-3. Set:
-   ```
-   MONGO_URI=mongodb://localhost:27017/support-tickets
-   PORT=3000
-   ```
+Open **http://localhost:5173/** in your browser.
 
-### Option B — MongoDB Atlas
+## Ports
 
-1. Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-2. Add your IP to the cluster network access allowlist and create a database user.
-3. Copy the connection string from Atlas (Connect → Drivers) into `server/.env` as `MONGO_URI`, replacing `<password>` and `<dbname>` as needed.
-4. Set `PORT=3000` (or your preferred port).
+| Service | Default port | Config |
+|---------|--------------|--------|
+| Frontend (Vite) | **5173** | Fixed by Vite (`npm run dev`) |
+| Backend (Express) | **3000** | `PORT` in `server/.env` |
+| API proxy target | must match backend | `VITE_API_PORT` in `client/.env` (default `3000`) |
 
-On startup, the server logs `MongoDB connected successfully` or a clear connection failure message before exiting.
+If `PORT` and `VITE_API_PORT` differ, API calls from the UI will fail with proxy/connection errors.
+
+## Run tests
+
+Backend integration and unit tests (uses an in-memory MongoDB — does **not** touch your dev database):
+
+```bash
+cd server
+npm test
+```
+
+## Troubleshooting
+
+**`MongoDB connection failed` / SSL errors (Atlas)**  
+- Add your current IP under Atlas → Network Access (or `0.0.0.0/0` for local dev only).  
+- Ensure the URI includes a database name: `...mongodb.net/support-tickets?...`  
+- Disconnect VPN if TLS errors persist.
+
+**`http proxy error: ECONNREFUSED` or HTML `Cannot GET /api/tickets`**  
+- Backend is not running, or another process is on the API port.  
+- Confirm `curl http://localhost:<PORT>/health` returns `{"status":"ok"}`.  
+- Align `PORT` (server) and `VITE_API_PORT` (client), then restart both dev servers.
+
+**`Failed to resolve import "react-router-dom"`**  
+- Run `npm install` in `client/`.
+
+## Project layout
+
+```
+client/          React + Vite UI
+server/          Express API, Mongoose models, seed script, tests
+tool-specific/   Spec, tasks, and workflow docs (not runtime)
+```
+
+## API overview
+
+| Method | Route | Purpose |
+|--------|-------|---------|
+| GET | `/api/users` | List users (for assignee/creator dropdowns) |
+| GET | `/api/tickets` | List tickets (`?q=` keyword, `&status=` filter) |
+| POST | `/api/tickets` | Create ticket |
+| GET | `/api/tickets/:id` | Ticket detail with comments |
+| PATCH | `/api/tickets/:id` | Update fields (not status) |
+| PATCH | `/api/tickets/:id/status` | Status transition (state machine enforced) |
+| GET/POST | `/api/tickets/:id/comments` | List / add comments |
+
+Ticket status transitions are fixed server-side; invalid transitions return `400`.
